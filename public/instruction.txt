@@ -1,5 +1,9 @@
 npx create-next-app@latest nextjs-dashboard --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example" --use-pnpm
 
+git status
+git remote set-url origin https://github.com/Mo7amedDev/my-nextjs-template-pwa.git
+git remote -v
+git push -u origin main
 
 
 nextjs app requirement:
