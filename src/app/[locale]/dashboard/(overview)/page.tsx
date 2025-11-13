@@ -42,6 +42,9 @@ export default async function OverviewPage({
                <Suspense fallback={<RevenueChartSkeleton/>}>
                     <RevenueChart/>
                </Suspense>
+ <Suspense fallback={<RevenueChartSkeleton/>}>
+                    <RevenueChart/>
+               </Suspense>
  
                 <Suspense fallback={<LatestInvoicesSkeleton/>}>
                     <LatestInvoices/>

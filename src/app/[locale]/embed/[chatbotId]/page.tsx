@@ -46,7 +46,7 @@ export default function EmbedChatbotPage() {
   return (
     <div
       ref={containerRef}
-      className="relative inline-block"
+      className="relative inline-block bg-transparent"
     >
       <Chatbot 
         chatbotId={params.get('chatbotId') ?? ''} 

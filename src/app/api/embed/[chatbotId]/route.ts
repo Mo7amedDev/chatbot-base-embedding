@@ -15,53 +15,33 @@ export async function GET(
       iframe.style.right = '20px';
       iframe.style.border = 'none';
       iframe.style.borderRadius = '10px';
-      iframe.style.backgroundColor = 'white';
+      iframe.style.backgroundColor = 'transparent';
       iframe.style.zIndex = '9999';
       iframe.style.overflow = 'hidden';
       iframe.setAttribute('scrolling', 'no');
+      iframe.setAttribute('allowtransparency', 'true');
+      iframe.setAttribute('frameborder', '0');
 
-      // Set initial size
-      iframe.style.width = '80px';
-      iframe.style.height = '60px';
+      // Set initial size - make it exactly button size when closed
+      iframe.style.width = '56px'; // w-14 = 56px
+      iframe.style.height = '56px'; // h-14 = 56px
 
       document.body.appendChild(iframe);
 
       // Listen for resize messages from iframe content
       window.addEventListener('message', function(event) {
         if (event.data?.type === 'chatbot-size') {
-          iframe.style.width = event.data.width + 'px';
-          iframe.style.height = event.data.height + 'px';
+          // Only update if we have reasonable dimensions
+          if (event.data.width > 0 && event.data.height > 0) {
+            iframe.style.width = event.data.width + 'px';
+            iframe.style.height = event.data.height + 'px';
+          }
         }
       });
 
       // Close chatbot when clicking outside the iframe
-      let isMouseDownOnIframe = false;
-
-      // Track when mouse is pressed on iframe
-      iframe.addEventListener('mousedown', function() {
-        isMouseDownOnIframe = true;
-      });
-
-      // Track when mouse is released
-      document.addEventListener('mouseup', function() {
-        isMouseDownOnIframe = false;
-      });
-
-      // Close when clicking outside iframe
-      document.addEventListener('mousedown', function(event) {
-        // Check if click is outside the iframe and not on the iframe itself
-        const isClickOutside = !iframe.contains(event.target) && !isMouseDownOnIframe;
-        
-        if (isClickOutside) {
-          // Send close message to iframe
-          iframe.contentWindow?.postMessage({ type: 'close-chatbot' }, '*');
-        }
-      });
-
-      // Alternative simpler approach: Close on any click outside iframe
       document.addEventListener('click', function(event) {
         if (!iframe.contains(event.target)) {
-          // Small delay to ensure the click wasn't on the iframe button
           setTimeout(() => {
             iframe.contentWindow?.postMessage({ type: 'close-chatbot' }, '*');
           }, 10);

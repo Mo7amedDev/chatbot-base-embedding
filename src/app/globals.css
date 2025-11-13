@@ -120,3 +120,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+iframe {
+  background: transparent !important;
+}
+
+html, body {
+  background-color: transparent !important;
+   
+}
+
+#__next {
+  background-color: transparent !important;
+}
