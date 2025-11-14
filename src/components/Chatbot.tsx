@@ -42,7 +42,7 @@ export default function Chatbot({ chatbotId, isOpen, onOpenChange }: ChatbotProp
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="rounded-xl shadow-lg border border-gray-300 bg-white p-3 w-full mb-14"
+            className="rounded-xl  border border-gray-300 bg-white p-3 w-full mb-14"
           >
             <div className="h-[250px] overflow-y-auto mb-2">
               {messages.map((m, i) => (
@@ -79,7 +79,7 @@ export default function Chatbot({ chatbotId, isOpen, onOpenChange }: ChatbotProp
       >
         <Button
           onClick={toggleChat}
-          className="cursor-pointer rounded-full shadow-lg bg-blue-600 hover:bg-blue-700 text-white w-14 h-14 flex items-center justify-center"
+          className="cursor-pointer rounded-full   bg-blue-600 hover:bg-blue-700 text-white w-14 h-14 flex items-center justify-center"
         >
           {isOpen ? '✕' : '💬'}
         </Button>
